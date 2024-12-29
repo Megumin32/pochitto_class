@@ -1,0 +1,47 @@
+entity クラス {
+  +クラスid : INT [PK]
+  --
+  作成日時 : DATETIME
+}
+
+entity 教師 {
+  +教師id : INT [PK]
+  --
+  クラスID : INT [FK]
+}
+
+entity 生徒 {
+  +生徒id : INT [PK]
+  --
+  クラスID : INT [FK]
+}
+
+entity ログ {
+  +ログid : INT [PK]
+  --
+  クラスID : INT [FK]
+  教師? : BOOLEAN
+  コメント : TEXT
+  作成日時 : DATETIME
+}
+
+entity アンケート {
+  +アンケートid : INT [PK]
+  --
+  クラスID : INT [FK]
+  質問 : VARCHAR(100)
+  選択肢1 : VARCHAR(100)
+  選択肢2 : VARCHAR(100)
+  選択肢3 : VARCHAR(100)
+  選択肢4 : VARCHAR(100)
+  回答1 : INT
+  回答2 : INT
+  回答3 : INT
+  回答4 : INT
+  作成日時 : DATETIME
+}
+
+クラス ||-r-o{ 教師
+クラス ||-l-o{ 生徒
+クラス ||-u-o{ ログ
+クラス ||-d-o{ アンケート
